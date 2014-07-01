@@ -1,0 +1,149 @@
+button.navi{
+    width: auto;
+    height: 34px;
+    padding: 3px 10px;
+    border: none;
+    background-color: #999;
+      -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+    color: #eee;
+}
+
+table{
+    margin: 0 10px;
+    width: 620px;
+}
+
+.categorybox{
+    width: 700px;
+    height: 567px;
+    overflow: scroll;
+}
+
+.category{
+    float:left;
+    width: 150px;
+    list-style: none;
+}
+
+.category li{
+    border-bottom: 1px solid #999;
+    padding:5px 10px;
+
+}
+
+.editable .category li{
+    cursor:pointer;
+}
+
+.editable .category li:hover{
+    background-color: #666;
+}
+
+.editable .category li:active{
+    background-color: #33819e;
+}
+
+.category li.selected, .category li.selected:hover{
+    background-color: #33819e;
+}
+
+.category li.sub_selected{
+    background-color: #444;
+}
+
+.category .header{
+    background-color: #666;
+}
+
+.category .header:active{
+    background-color: #666;
+}
+
+.opsbox{
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width: 600px;
+}
+
+.ops{
+    float:left;
+    width:150px;
+}
+
+.ops button{
+    width:150px;
+    height: 30px;
+    border-right: 1px solid #999;
+    font-size: 16px;
+}
+
+.ops button:hover{
+    width:149px;
+    border:2px solid #999;
+}
+
+.ops button:active{
+    width:149px;
+    border:3px solid #444;
+}
+
+.bar a{
+    color: #fff; 
+}
+
+.bar.context, .bar.context div{
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+}
+
+.bar.context .tool{
+    height: 25px;
+    padding: 0 0 0 0;
+    margin: 0;
+    vertical-align: -6px;
+}
+
+#addcategory{
+    float:left;
+    width: 100px;
+    height: 200px;
+    text-align: center;
+    padding: 20px 0 0 0;
+    cursor: pointer;
+}
+
+#addcategory:hover{
+    background-color: #666;
+}
+
+#addcategory:active{
+    background-color: #33819e;
+}
+
+#modal{
+    position:absolute;
+    background:rgba(0,0,0,0.7);
+    width: 600px;
+    height: 680px;
+    top:0;
+    left:0;
+    visibility:hidden;
+}
+
+#modal>*{
+    width: 230px;
+    margin: 200px auto 0 auto;
+}
+
+#modal button{
+    width: 100px;
+    margin: 0 5px;
+}
+
+#edititem, #deleteitem{
+    cursor: pointer;
+}
