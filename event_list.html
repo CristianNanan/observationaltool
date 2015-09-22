@@ -17,11 +17,11 @@
 <div id="container" class="center" style="padding-left:0; padding-top:0;">
 
  <div class="bar" style="width: 1270px;">
-  <fake id="timer" style="font-size:45px;">00:00:00</fake>
-  <fake id="buttons" style="float:right;">
+  <span id="timer" style="font-size:45px;">00:00:00</span>
+  <span id="buttons" style="float:right;">
    <button style="font-size:25px; margin:7px 0px 0px 0px;">P A U S E</button>
    <button onclick="window.location='http://cristiannanan.github.io/';" style="font-size:25px; margin:7px 0px 0px 0px;"><b>S T O P</b></button>
-  </fake>
+  </span>
  </div>
  
  <div class="column" style="width: 1280px;">
@@ -39,7 +39,7 @@
   <table id="E" style="width:1260px; margin:0px 10px 0px 10px;">
    <tr class="clickable">
     <td style="width:14%;">00:00:00</td>
-    <td style="width:14%;"><fake id="0"><button id="0" onclick="stopEvent(this.id)" style="width:90%; height:90%;">STOP</button></fake></td>
+    <td style="width:14%;"><span id="0"><button id="0" onclick="stopEvent(this.id)" style="width:90%; height:90%;">STOP</button></span></td>
     <td style="width:18%;">Nurse</td>
     <td style="width:18%;">Doctor</td>
     <td style="width:18%;">Example</td>
