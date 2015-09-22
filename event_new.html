@@ -6,21 +6,21 @@
     <meta name="viewport" content="user-scalable=no, width=1280, initial-scale=0.8, maximum-scale=0.8">
  <link href="css/base_dark.css" rel="stylesheet">
  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
- <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/hammer.min.js"></script>
-    <script src="js/jquery.hammer.min.js"></script>
-    <script src="js/fastclick.js"></script>
-    <script src="js/script.js"></script>
+ <script src="js2/jquery-1.10.2.min.js"></script>
+    <script src="js2/hammer.min.js"></script>
+    <script src="js2/jquery.hammer.min.js"></script>
+    <script src="js2/fastclick.js"></script>
+    <script src="js2/script.js"></script>
 </head>
 
 <body>
-<div id="container" class="center" style="height: 712px;padding-left:0; padding-top:0;">
+<div id="container" class="center" style="padding-left:0; padding-top:0;">
 
  <div class="bar" style="width: 1270px;">
   <fake id="timer" style="font-size:45px;">00:00:00</fake>
   <fake id="buttons" style="float:right;">
    <button style="font-size:25px; margin:7px 0px 0px 0px;">P A U S E</button>
-   <button onclick="window.location='./sessions_dummy.html';" style="font-size:25px; margin:7px 0px 0px 0px;"><b>S T O P</b></button>
+   <button onclick="window.location='http://cristiannanan.github.io/';" style="font-size:25px; margin:7px 0px 0px 0px;"><b>S T O P</b></button>
   </fake>
  </div>
  
@@ -33,7 +33,7 @@
   </table>
  </div>
 
- <div style="width:1280px; height: 500px; overflow: scroll;">
+ <div style="width:1280px; height: 400px; overflow-y: scroll;overflow-x:hidden;">
   <table id="Z" style="width:1260px; margin:0px 10px 0px 10px;">
    <tr id="0">
     <td id="0" class="clickable" onClick="select('0', '0')" style="width:25%; border:4px gray ridge;">Nurse</td>
@@ -70,122 +70,6 @@
 
 </div>
 
+<script src="js/newlogic.js"></script>
 </body>
 </html>
-
-<script>
-var s = parseInt(sessionStorage.getItem("sa"));
-var m = parseInt(sessionStorage.getItem("ma"));
-var h = parseInt(sessionStorage.getItem("ha"));
-if (isNaN(s)) { var s=0 }
-if (isNaN(m)) { var m=0 }
-if (isNaN(h)) { var h=0 }
-
-rS=s
-rM=m
-rH=h
-
-if (s < 10) { rS="0"+s }
-if (m < 10) { rM="0"+m }
-if (h < 10) { rH="0"+h }
-
-document.getElementById("timer").innerHTML=rH+":"+rM+":"+rS;
-
-var varVar=setInterval(function(){studyTimer()},1000);
-
-function studyTimer()
-{
- s=s+1
-
- if (s > 59) { s=0; m=m+1 }
- if (m > 59) { m=0; h=h+1 }
-
- rS=s
- rM=m
- rH=h
- sessionStorage.setItem("sa", s);
- sessionStorage.setItem("ma", m);
- sessionStorage.setItem("ha", h);
-
- if (s < 10) { rS="0"+s }
- if (m < 10) { rM="0"+m }
- if (h < 10) { rH="0"+h }
-
- document.getElementById("timer").innerHTML=rH+":"+rM+":"+rS;
-}
-</script>
-
-<script>
-function stopEvent(id)
-{
- document.getElementById(id).innerHTML=rH+":"+rM+":"+rS;
-}
-</script>
-
-<script>
-var attributes=sessionStorage.getItem("attributes");
-if (attributes==null) { var attributes=[null,null,null,null]; }
-attributes=attributes.split(",")
-function select(row, column){
- var z = document.getElementsByTagName("tr");
- for(x=0;x<z.length;x++){
-  var a=z[x].getElementsByTagName("td");
-  for(y=0;y<a.length;y++){
-   if (a[y].id.match(column)){
-    a[y].style.backgroundColor="#000000";}}}
-
-document.getElementById("Z").rows[row].cells[column].style.backgroundColor="#33819e";
-
-attributes[column]=document.getElementById("Z").rows[row].cells[column].innerHTML;}
-</script>
-
-<script>
-function saveEvent()
-{
- addList=""
- for(x=0;x<attributes.length;x++){
-  if(attributes[x]==null || attributes[x]==""){ return }
-  else { addList+=attributes[x]+"," }}
- var startTime=sessionStorage.getItem("startTime");
- addList+=startTime+","
-
- var eCount=parseInt(sessionStorage.getItem("eCount"));
- if (isNaN(eCount)) { var eCount=0 }
- eCount+=1
- addList+=eCount+";"
- sessionStorage.setItem("eCount", eCount);
- 
- var addedList=sessionStorage.getItem("addedList");
- if (addedList==null) { var addedList="" }
- addedList+=addList
- sessionStorage.setItem("addedList", addedList);
- sessionStorage.removeItem("attributes");
- sessionStorage.removeItem("rEvent");
- sessionStorage.removeItem("startTime");
- location.href="event_list.html"
-}
-</script>
-
-<script>
-function backEvent()
-{
- sessionStorage.setItem("attributes", attributes)
- var rEvent=document.getElementById("Z").innerHTML;
- sessionStorage.setItem("rEvent", rEvent);
- location.href="event_list.html"
-}
-var rEvent=sessionStorage.getItem("rEvent")
-if (!(rEvent==null)){
- document.getElementById("Z").innerHTML=rEvent;
-}
-</script>
-
-<script>
-function deleteEvent()
-{
- sessionStorage.removeItem("attributes");
- sessionStorage.removeItem("rEvent");
- sessionStorage.removeItem("startTime");
- location.href="event_list.html"
-}
-</script>

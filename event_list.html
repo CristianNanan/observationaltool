@@ -6,21 +6,21 @@
     <meta name="viewport" content="user-scalable=no, width=1280, initial-scale=0.8, maximum-scale=0.8">
  <link href="css/base_dark.css" rel="stylesheet">
  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
- <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/hammer.min.js"></script>
-    <script src="js/jquery.hammer.min.js"></script>
-    <script src="js/fastclick.js"></script>
-    <script src="js/script.js"></script>
+ <script src="js2/jquery-1.10.2.min.js"></script>
+    <script src="js2/hammer.min.js"></script>
+    <script src="js2/jquery.hammer.min.js"></script>
+    <script src="js2/fastclick.js"></script>
+    <script src="js2/script.js"></script>
 </head>
 
 <body>
-<div id="container" class="center" style="height: 712px;padding-left:0; padding-top:0;">
+<div id="container" class="center" style="padding-left:0; padding-top:0;">
 
  <div class="bar" style="width: 1270px;">
   <fake id="timer" style="font-size:45px;">00:00:00</fake>
   <fake id="buttons" style="float:right;">
    <button style="font-size:25px; margin:7px 0px 0px 0px;">P A U S E</button>
-   <button onclick="window.location='./sessions_dummy.html';" style="font-size:25px; margin:7px 0px 0px 0px;"><b>S T O P</b></button>
+   <button onclick="window.location='http://cristiannanan.github.io/';" style="font-size:25px; margin:7px 0px 0px 0px;"><b>S T O P</b></button>
   </fake>
  </div>
  
@@ -35,7 +35,7 @@
   </table>
  </div>
 
- <div style="width:1280px; height: 500px; overflow: scroll;">
+ <div style="width:1280px; height: 400px; overflow-y: scroll; overflow-x:hidden;">
   <table id="E" style="width:1260px; margin:0px 10px 0px 10px;">
    <tr class="clickable">
     <td style="width:14%;">00:00:00</td>
@@ -62,94 +62,6 @@
 
 </div>
 
+<script src="js/listlogic.js"></script>
 </body>
 </html>
-
-<script>
-var s = parseInt(sessionStorage.getItem("sa"));
-var m = parseInt(sessionStorage.getItem("ma"));
-var h = parseInt(sessionStorage.getItem("ha"));
-if (isNaN(s)) { var s=0 }
-if (isNaN(m)) { var m=0 }
-if (isNaN(h)) { var h=0 }
-
-rS=s
-rM=m
-rH=h
-
-if (s < 10) { rS="0"+s }
-if (m < 10) { rM="0"+m }
-if (h < 10) { rH="0"+h }
-
-document.getElementById("timer").innerHTML=rH+":"+rM+":"+rS;
-
-var varVar=setInterval(function(){studyTimer()},1000);
-
-function studyTimer()
-{
- s=s+1
-
- if (s > 59) { s=0; m=m+1 }
- if (m > 59) { m=0; h=h+1 }
-
- rS=s
- rM=m
- rH=h
- sessionStorage.setItem("sa", s);
- sessionStorage.setItem("ma", m);
- sessionStorage.setItem("ha", h);
-
- if (s < 10) { rS="0"+s }
- if (m < 10) { rM="0"+m }
- if (h < 10) { rH="0"+h }
-
- document.getElementById("timer").innerHTML=rH+":"+rM+":"+rS;
-}
-</script>
-
-<script>
-function stopEvent(id)
-{
- var stopTime=rH+":"+rM+":"+rS;
- document.getElementById(id).innerHTML=stopTime;
- var stopList=sessionStorage.getItem("stopList");
- if (stopList==null) { var stopList="" }
- stopList+=id+";"+stopTime+","
- sessionStorage.setItem("stopList", stopList);
-}
-</script>
-
-<script>
-function addEvent()
-{
- var startTime=sessionStorage.getItem("startTime");
- if (startTime==null) { var startTime=rH+":"+rM+":"+rS; }
- sessionStorage.setItem("startTime", startTime);
- location.href="event_new.html"
-}
-</script>
-
-<script>
-var addedList=sessionStorage.getItem("addedList")
-if (!(addedList==null)){
- var z=addedList.split(";")
- for(x=0;x<z.length-1;x++){
-  var a=z[x].split(",")
-  var table=document.getElementById("E");
-  var row=table.insertRow(-1);
-  row.className="clickable"
-  var cell0 = row.insertCell(0).innerHTML=a[4];
-  var cell1 = row.insertCell(1).innerHTML='<fake id="'+a[5]+'"><button id="'+a[5]+'" onclick="stopEvent(this.id)" style="width:90%; height:90%;">STOP</button></fake>';
-  var cell2 = row.insertCell(2).innerHTML=a[0];
-  var cell3 = row.insertCell(3).innerHTML=a[1];
-  var cell4 = row.insertCell(4).innerHTML=a[2];
-  var cell5 = row.insertCell(5).innerHTML=a[3];}}
-</script>
-
-<script>
-var stopList=sessionStorage.getItem("stopList")
-if (!(stopList==null)){
- var z=stopList.split(",")
- for(x=0;x<z.length-1;x++){
-  document.getElementById(z[x].split(";")[0]).innerHTML=z[x].split(";")[1];}}
-</script>
